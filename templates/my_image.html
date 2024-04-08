@@ -1,0 +1,83 @@
+<!doctype html>
+{% load static %}
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8"/>
+        <link href="{% static 'FontAwesome/css/all.css' %}" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css?family=Playfair+Display+SC&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+        <title>Memory Vault</title>
+        <style>
+            
+        </style>
+    </head>
+    <body>
+        
+        <!-- HEADER-->
+        <header>
+            <h1 style="display: flex; flex-direction: row;justify-content: space-between;">
+                <span class="html"><a style="text-decoration: none;color: inherit;" href="{% url 'index'%}">Memory Vault</a></span><div>My Image</div><div>  
+                    
+    
+                    &nbsp;&nbsp;&nbsp;<span class="css">{{request.user.username}}&nbsp;&nbsp;&nbsp;</span> <a style="color: aliceblue;" href="{% url 'logout' %}" >Logout</a></div>
+                    
+              </h1>
+            
+           
+        </header>
+        
+        <!-- SECTION -->
+        <section>
+            {% for i in v_i %}
+            <article>
+                <figure id="img{{forloop.counter}}" >
+                    <a href="#" ><img src="{{i.v_image.url}}"/></a>
+                </figure>
+                <!-- <form action="{% url 'vac_images' %}" method="post"> -->
+                <!-- {% csrf_token %} -->
+                <!-- <input type="hidden" name="id" value="{{i.pk}}"> -->
+                <h6>
+                    <a type="submit">{{i.v_name.name}}-{{request.user.username}}</a></h6> <br><form action="{% url 'view_image' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" value="{{i.pk}}">
+                        <button style="text-decoration: none;border: none;background:none;cursor: pointer;" type="submit">View Full Size</button>
+                    </form>
+                    <div style="display: flex;flex-direction: row;justify-content: space-around;">
+                        <form action="{% url 'edit_image' %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="id" value="{{i.pk}}">
+                            <button style="text-decoration: none;border: none;background:none;cursor: pointer;" type="submit">Edit</button>
+                        </form>
+                        <form action="{% url 'delete_image' %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="id" value="{{i.pk}}">
+                            <button style="text-decoration: none;border: none;background:none;cursor: pointer;" type="submit">Delete</button>
+                        </form>
+                    </div>
+            </article>
+            
+            {% endfor %}
+            
+
+            
+            
+        </section>
+        
+        <footer>
+            <h4 style="color: white;">Developed & Designed By Vinay &copy;2024</h4>
+           <br><br>
+           
+           <!-- <a href="{% url 'logout' %}" >Logout</a> -->
+          
+          </footer>
+        
+
+
+        <script>
+
+        
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,71 @@
+<!doctype html>
+{% load static %}
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8"/>
+        <link href="{% static 'FontAwesome/css/all.css' %}" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css?family=Playfair+Display+SC&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+        <title>Memory Vault</title>
+        <style>
+            
+        </style>
+    </head>
+    <body>
+        
+        <!-- HEADER-->
+        <header>
+            <h1 style="display: flex; flex-direction: row;justify-content: space-between;">
+                <span class="html"><a style="text-decoration: none;color: inherit;" href="{% url 'index'%}">Memory Vault</a></span><div>  
+                    {% if request.user.is_authenticated %}
+
+                    <span class="css"><a style="color: aliceblue;" href="{% url 'my_album' %}" >My Album</a>&nbsp;&nbsp;&nbsp;</span> <a style="color: aliceblue;" href="{% url 'logout' %}" >Logout</a></div>
+                    {% else %}
+                    <span class="css"><a style="color: aliceblue;" href="{% url 'mylogin' %}" >Login</a>&nbsp;&nbsp;&nbsp;</span> <a style="color: aliceblue;" href="{% url 'signup' %}" >Signup</a></div>
+                    {% endif %}
+            </h1>
+            
+           
+        </header>
+        
+        <!-- SECTION -->
+        <section>
+            {% for i in v_n %}
+            <article>
+                <figure id="img1" >
+                    <a href="#" ><img width="100vw" height="100vh" src="{{i.image.url}}"/></a>
+                </figure>
+                <form action="{% url 'vac_images' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{i.pk}}">
+                <h6>
+                    <button style="text-decoration: none;border: none;background:none;cursor: pointer;" type="submit">{{i.name}}-{{i.user.username}}</button></h6> </form><br>
+            </article>
+            
+            {% endfor %}
+            
+
+            
+            
+        </section>
+        
+        <footer>
+            <h4 style="color: white;">Developed & Designed By Vinay &copy;2024</h4>
+           <br><br>
+            
+           
+           
+           
+          
+          </footer>
+        
+
+
+        <script>
+
+        
+
+        </script>
+    </body>
+</html>

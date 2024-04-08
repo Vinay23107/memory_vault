@@ -18,7 +18,7 @@ phases:
 
   build:
     commands:
-      - mvn sonar:sonar -Dsonar.login=8a335a2594d8ab54231882d593502d8376ac5da5 -Dsonar.host.url=https://sonarcloud.io -Dsonar.projectKey=SampleTestProject -Dsonar.organization=Rubanthirukumaran || true
+      - mvn sonar:sonar -Dsonar.login=8a335a2594d8ab54231882d593502d8376ac5da5 -Dsonar.host.url=https://sonarcloud.io -Dsonar.projectKey=Vinay23107_memory_vault -Dsonar.organization=vinay23107 || true
       - sleep 5
       - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=devops_project >result.json
       - cat result.json
